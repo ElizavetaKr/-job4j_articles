@@ -30,6 +30,7 @@ public class Application {
         var properties = new Properties();
         try (InputStream in = Application.class.getClassLoader().getResourceAsStream("application.properties")) {
             properties.load(in);
+            Class.forName(properties.getProperty("driver"));
         } catch (Exception e) {
             LOGGER.error("Не удалось загрузить настройки. { }", e.getCause());
             throw new IllegalStateException();
